@@ -19,7 +19,7 @@ public:
 
 	//constr cu par
 	Ticket(int id, char* location, string customerName, int price):id(id) {
-		location = new char[strlen(location) + 1];
+		this->location = new char[strlen(location) + 1];
 		strcpy(this->location, location);
 		this->customerName = customerName;
 		this->price = price;
@@ -27,23 +27,26 @@ public:
 
 	//copy constr
 	Ticket(const Ticket& ticket):id(ticket.id) {
-		location = new char[strlen(location) + 1];
+		this->location = new char[strlen(location) + 1];
 		strcpy(this->location,ticket.location);
 		this->customerName = ticket.customerName;
 		this->price = ticket.price;
 	}
 
 	//operator =
-	Ticket& operator=(const Ticket& ticket) {
+	Ticket & operator=(const Ticket& ticket) {
+		if(location!=nullptr)
 		delete[] location;
 		location = new char[strlen(location) + 1];
 		strcpy(this->location, ticket.location);
 		this->customerName = ticket.customerName;
 		this->price = ticket.price;
+		return *this;
 	}
 
 	//destructor
 	~Ticket() {
+		if(this->location!=nullptr)
 		delete[] location;
 	}
 
@@ -89,4 +92,22 @@ public:
 			this->price = price;
 		}
 	}
+
+	//operator []
+	char& operator[](int index) {
+		if (index < 0 || index >= strlen(this->location)) {
+			throw "Wrong index";
+		}
+		return this->location[index];
+	}
+
+	//operator <=
+	bool operator<=(float price) {
+		return this->price <= price;
+	}
+
+	friend void operator<<(ostream& out, Ticket& ticket);
+	friend void operator>>(istream& in, Ticket& ticket);
 };
+
+
