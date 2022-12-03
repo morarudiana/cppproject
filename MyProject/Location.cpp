@@ -103,4 +103,15 @@ public:
 			this->zone = zone;
 		}
 	}
+
+	bool operator<=(int value) {
+		return this->noRows <= value;
+	}
+
+	void operator-(int minus) {
+		noRows -= minus;
+	}
+
+
+
 };

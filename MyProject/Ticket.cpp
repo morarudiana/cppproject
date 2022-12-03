@@ -101,10 +101,11 @@ public:
 		return this->location[index];
 	}
 
-	//operator <=
-	bool operator<=(float price) {
-		return this->price <= price;
+	//operator*
+	void operator*(float multiplier) {
+		price *= multiplier;
 	}
+	
 
 	friend ostream& operator<<(ostream& cout, const Ticket& t);
 	friend istream& operator>>(istream& cin, Ticket& t);
