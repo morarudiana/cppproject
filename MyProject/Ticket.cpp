@@ -33,6 +33,12 @@ public:
 		this->price = ticket.price;
 	}
 
+	//destructor
+	~Ticket() {
+		if (this->location != nullptr)
+			delete[] location;
+	}
+
 	//operator =
 	Ticket & operator=(const Ticket& ticket) {
 		if(location!=nullptr)
@@ -42,12 +48,6 @@ public:
 		this->customerName = ticket.customerName;
 		this->price = ticket.price;
 		return *this;
-	}
-
-	//destructor
-	~Ticket() {
-		if(this->location!=nullptr)
-		delete[] location;
 	}
 
 	char* getLocation() {
@@ -106,8 +106,28 @@ public:
 		return this->price <= price;
 	}
 
-	friend void operator<<(ostream& out, Ticket& ticket);
-	friend void operator>>(istream& in, Ticket& ticket);
+	friend ostream& operator<<(ostream& cout, const Ticket& t);
+	friend istream& operator>>(istream& cin, Ticket& t);
 };
+
+ostream& operator<<(ostream& cout, const Ticket& t) {
+	cout << "Location: " << t.location << endl << "Customer name: " << t.customerName << endl;
+	cout << "Price: " << t.price<<endl;
+	return cout;
+}
+
+istream& operator>>(istream& cin, Ticket& t) {
+	char buffer[200];
+	cout << "Location: ";
+	cin >> buffer;
+	if (t.location != nullptr) delete[] t.location;
+	t.location = new char[strlen(buffer) + 1];
+	strcpy(t.location, buffer);
+	cout <<endl<< "Customer name :";
+	cin >> t.customerName;
+	return cin;
+}
+
+
 
 
