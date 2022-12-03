@@ -81,4 +81,15 @@ public:
 			throw "Invalid location!";
 		else this->location = location;
 	}
+
+	Event operator+(int nr) {
+		Event copy = *this;
+		copy.time += nr;
+		return copy;
+	}
+
 };
+
+bool operator==(Event& e1, Event& e2) {
+	return e1.getTime() == e2.getTime();
+}
