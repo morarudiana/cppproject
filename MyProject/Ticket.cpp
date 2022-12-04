@@ -126,6 +126,8 @@ istream& operator>>(istream& cin, Ticket& t) {
 	strcpy(t.location, buffer);
 	cout <<endl<< "Customer name :";
 	cin >> t.customerName;
+	cout << endl << "Price: ";
+	cin >> t.price;
 	return cin;
 }
 
