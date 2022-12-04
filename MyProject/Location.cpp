@@ -42,6 +42,7 @@ public:
 	~Location() {
 		if(this->row!=nullptr)
 		delete[] this->row;
+		NO_LOCATIONS--;
 	}
 
 	Location& operator=(const Location& location) {
