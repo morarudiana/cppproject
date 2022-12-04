@@ -74,6 +74,10 @@ public:
 		return this->zone;
 	}
 
+	static int getNoLocations() {
+		return Location::NO_LOCATIONS;
+	}
+
 	void setLocationName(string locationName) {
 		if (locationName.length() < 1)
 			throw "You need to input a valid name!";
