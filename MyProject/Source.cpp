@@ -7,6 +7,8 @@
 
 using namespace std;
 
+int Location::NO_LOCATIONS = 0; //asa e pe net...
+
 void main() {
 
 	//-----------------------------------------------TICKET CLASS-------------------------------------------------------
@@ -50,12 +52,23 @@ void main() {
 	Event e1("Nostalgia", "12/12/2022", 2030, "Herastrau");//constr with parameters
 	cout << e1;
 
-	////testing >> and <<
-	//Event e2;
-	//cin >> e2;
-	//cout << e2;
+	//testing >> and <<
+	Event e2;
+	cin >> e2;
+	cout << e2;
 
-	e1 + 15;
-	cout << e1;
+	//! op
+	if (!e1) {
+		cout << endl << "The hour is 0";
+	}
+
+	//----------------------------------------------LOCATION CLASS---------------------------------------------------
+
+	//string x = "Arena Nationala";
+	int v[4] = { 1,2,3,4 };
+	Location l1("Arena Nationala", 3, v, "B");   //constr with parameters
+	cout << l1<<endl;
+	Location l2 = l1; //copy constr
+	cout << l2;
 	
 }

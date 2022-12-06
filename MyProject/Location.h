@@ -11,14 +11,15 @@ private:
 	int* row = nullptr;
 	string zone = "";
 
-	static int NO_LOCATIONS;
+	static int NO_LOCATIONS;    
+	
 
 public:
 	Location() {
 
 	}
 
-	Location(string locationName, int noRows, int* row, string zone) {
+	Location(string locationName, int noRows, int* row, string zone) {    
 		this->locationName = locationName;
 		this->noRows = noRows;
 		this->row = new int[noRows];
@@ -133,4 +134,7 @@ public:
 	}
 
 };
+
+
+
 
