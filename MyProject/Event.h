@@ -60,25 +60,25 @@ public:
 
 	void setEventName(string eventName) {
 		if (eventName.length() < 1)
-			throw "Invalid event name!";
+			throw new exception  ("Invalid event name!");
 		else this->eventName = eventName;
 	}
 
 	void setDate() {
 		if (date.length() < 8)
-			throw "Invalid date!";
+			throw new exception  ("Invalid date!");
 		else this->date = date;
 	}
 
 	void setTime() {
 		if (time > 2359)
-			throw "Invalid hour!";
+			throw new exception ( "Invalid hour!");
 		else this->time = time;
 	}
 
 	void setLocation() {
-		if (location.length() < 1)
-			throw "Invalid location!";
+		if (location.length() < 3)
+			throw new exception ( "Invalid location!");
 		else this->location = location;
 	}
 
@@ -86,6 +86,10 @@ public:
 		Event copy = *this;
 		copy.time += nr;
 		return copy;
+	}
+
+	bool operator!() {
+		return this->time == 0;
 	}
 
 	friend ostream& operator<<(ostream& cout, const Event& e) {

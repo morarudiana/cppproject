@@ -80,7 +80,7 @@ public:
 
 	void setLocationName(string locationName) {
 		if (locationName.length() < 1)
-			throw "You need to input a valid name!";
+			throw new exception  ("You need to input a valid name!");
 		else {
 			this->locationName = locationName;
 		}
@@ -89,7 +89,7 @@ public:
 
 	void setRow(int* NewRow, int newNoRows) {
 		if (noRows < 1)
-			throw "You don't have enough rows!";
+			throw new exception  ("You don't have enough rows!");
 		else {
 			this->noRows = newNoRows;
 			if (this->row != nullptr) {
@@ -103,7 +103,7 @@ public:
 	}
 	void setZone(string zone) {
 		if (zone.length() < 1)
-			throw "You need to input a valid zone!";
+			throw new exception  ("You need to input a valid zone!");
 		else {
 			this->zone = zone;
 		}

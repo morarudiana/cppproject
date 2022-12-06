@@ -67,7 +67,7 @@ public:
 			delete[] location;
 		}
 		if (strlen(newLocation) < 1) {
-			throw "You don't have a valid location!";
+			throw new exception  ("You don't have a valid location!");
 		}
 		else {
 			location = new char[strlen(newLocation) + 1];
@@ -77,7 +77,7 @@ public:
 
 	void setCustomerName(string customerName) {
 		if (customerName.length() < 1) {
-		throw "You don't have a valid name!";
+		throw new exception ("You don't have a valid name!");
 		}
 		else {
 			this->customerName = customerName;
@@ -86,7 +86,7 @@ public:
 
 	void setPrice(int price) {
 		if (price < 1) {
-			throw "The price is too low!";
+			throw new exception ("The price is too low!");
 		}
 		else {
 			this->price = price;
@@ -96,7 +96,7 @@ public:
 	//operator []
 	char& operator[](int index) {
 		if (index < 0 || index >= strlen(this->location)) {
-			throw "Wrong index";
+			throw new exception ("Wrong index");
 		}
 		return this->location[index];
 	}
@@ -123,18 +123,14 @@ public:
 	cout <<endl<< "Customer name :";
 	cin >> t.customerName;
 	cout << endl << "Price: ";
+
 	cin >> t.price;
 	return cin;
 }
-	//friend ostream& operator<<(ostream& cout, const Ticket& t);
-	//friend istream& operator>>(istream& cin, Ticket& t);
+	
 };
 
-//ostream & operator<<(ostream & cout, const Ticket& t) {
-//	cout << "Location: " << t.location << endl << "Customer name: " << t.customerName << endl;
-//	cout << "Price: " << t.price<<endl;
-//	return cout;
-//}
+
 
 
 
