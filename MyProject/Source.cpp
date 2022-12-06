@@ -73,9 +73,13 @@ void main() {
 	
 	//<= op
 	if (l2 <= 6)
-		cout << endl << "The number of rows is less than 6";
+		cout << endl << "The number of rows is less than 6"<<endl;
 
 	//- op
 	l2 - 1;
 	cout << l2;
+
+	Location l3;
+	cin >> l3;
+	cout << l3;
 }
