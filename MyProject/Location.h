@@ -117,23 +117,20 @@ public:
 		noRows -= minus;
 	}
 
-	friend ostream& operator<<(ostream& cout, const Location& l);
-	friend istream& operator>>(istream& cin, Location& l);
+	friend ostream& operator<<(ostream& cout, const Location& l) {
+		cout << "Location name: " << l.locationName << endl << "Number of rows: " << l.noRows << endl << "Row: " << l.row << endl << "Zone: " << l.zone;
+		return cout;
+	}
+	friend istream& operator>>(istream& cin, Location& l) {
+		cout << "Location name: "; cin >> l.locationName;
+		cout << "Number of rows: "; cin >> l.noRows;
+		cout << "Row: ";
+		l.row = new int[l.noRows];
+		for (int i = 0; i < l.noRows; i++)
+			cin >> l.row[i];
+		cout << "Zone: "; cin >> l.zone;
+		return cin;
+	}
 
 };
 
-ostream& operator<<(ostream& cout, const Location& l) {
-	cout << "Location name: " << l.locationName << endl << "Number of rows: " << l.noRows << endl << "Row: " << l.row << endl << "Zone: " << l.zone;
-	return cout;
-}
-
-istream& operator>>(istream& cin, Location& l) {
-	cout << "Location name: "; cin >> l.locationName;
-	cout << "Number of rows: "; cin >> l.noRows;
-	cout << "Row: ";
-	l.row = new int[l.noRows];
-	for (int i = 0; i < l.noRows; i++)
-		cin >> l.row[i];
-	cout << "Zone: "; cin >> l.zone;
-	return cin;
-}

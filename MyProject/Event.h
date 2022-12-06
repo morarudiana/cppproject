@@ -88,25 +88,25 @@ public:
 		return copy;
 	}
 
-	friend ostream& operator<<(ostream& cout, const Event& e);
-	friend istream& operator>>(istream& cin, Event& e);
+	friend ostream& operator<<(ostream& cout, const Event& e) {
+		cout << "Event name: " << e.eventName << endl << "Date: " << e.date << endl;
+		cout << "Time: " << e.time << endl << "Location: " << e.location << endl;
+		return cout;
+	}
+	friend istream& operator>>(istream& cin, Event& e) {
+		cout << "Event name: "; cin >> e.eventName;
+		cout << "Date: "; cin >> e.date;
+		cout << "Time: "; cin >> e.time;
+		cout << "Location: "; cin >> e.location;
+		return cin;
+	}
+
+	friend bool operator==(Event& e1, Event& e2) {
+		return e1.getTime() == e2.getTime();
+	}
 
 };
 
-bool operator==(Event& e1, Event& e2) {
-	return e1.getTime() == e2.getTime();
-}
 
-ostream& operator<<(ostream& cout, const Event& e) {
-	cout << "Event name: " << e.eventName << endl << "Date: " << e.date << endl;
-	cout << "Time: " << e.time << endl << "Location: " << e.location << endl;
-	return cout;
-}
 
-istream& operator>>(istream& cin, Event& e) {
-	cout << "Event name: "; cin >> e.eventName;
-	cout << "Date: "; cin >> e.date;
-	cout << "Time: "; cin >> e.time;
-	cout << "Location: "; cin >> e.location;
-	return cin;
-}
+

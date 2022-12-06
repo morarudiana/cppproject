@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 #include <string>
 #include <iostream>
 #include <string.h>
@@ -20,15 +20,15 @@ public:
 	//constr cu par
 	Ticket(int id, char* location, string customerName, int price):id(id) {
 		this->location = new char[strlen(location) + 1];
-		strcpy(this->location, location);
+		strcpy_s(this->location,strlen(location)+1, location);
 		this->customerName = customerName;
 		this->price = price;
 	}
 
 	//copy constr
 	Ticket(const Ticket& ticket):id(ticket.id) {
-		this->location = new char[strlen(location) + 1];
-		strcpy(this->location,ticket.location);
+		this->location = new char[strlen(ticket.location) + 1];
+		strcpy_s(this->location, strlen(ticket.location) + 1, ticket.location);
 		this->customerName = ticket.customerName;
 		this->price = ticket.price;
 	}
@@ -43,8 +43,8 @@ public:
 	Ticket & operator=(const Ticket& ticket) {
 		if(location!=nullptr)
 		delete[] location;
-		location = new char[strlen(location) + 1];
-		strcpy(this->location, ticket.location);
+		location = new char[strlen(ticket.location) + 1];
+		strcpy_s(this->location, strlen(ticket.location) + 1, ticket.location);
 		this->customerName = ticket.customerName;
 		this->price = ticket.price;
 		return *this;
@@ -71,7 +71,7 @@ public:
 		}
 		else {
 			location = new char[strlen(newLocation) + 1];
-			strcpy(this->location, newLocation);
+			strcpy_s(this->location, strlen(newLocation) + 1, newLocation);
 		}
 	}
 
@@ -106,30 +106,37 @@ public:
 		price *= multiplier;
 	}
 	
+	friend ostream& operator<<(ostream& cout, const Ticket& t) {
+		cout << "Location: " << t.location << endl << "Customer name: " << t.customerName << endl;
+		cout << "Price: " << t.price << endl;
+		return cout;
+	}
 
-	friend ostream& operator<<(ostream& cout, const Ticket& t);
-	friend istream& operator>>(istream& cin, Ticket& t);
-};
-
-ostream& operator<<(ostream& cout, const Ticket& t) {
-	cout << "Location: " << t.location << endl << "Customer name: " << t.customerName << endl;
-	cout << "Price: " << t.price<<endl;
-	return cout;
-}
-
-istream& operator>>(istream& cin, Ticket& t) {
+	friend istream& operator>>(istream& cin, Ticket& t) {
 	char buffer[200];
 	cout << "Location: ";
 	cin >> buffer;
 	if (t.location != nullptr) delete[] t.location;
 	t.location = new char[strlen(buffer) + 1];
-	strcpy(t.location, buffer);
+	strcpy_s(t.location, strlen(t.location) + 1,buffer);
+	//strcpy(t.location, buffer);
 	cout <<endl<< "Customer name :";
 	cin >> t.customerName;
 	cout << endl << "Price: ";
 	cin >> t.price;
 	return cin;
 }
+	//friend ostream& operator<<(ostream& cout, const Ticket& t);
+	//friend istream& operator>>(istream& cin, Ticket& t);
+};
+
+//ostream & operator<<(ostream & cout, const Ticket& t) {
+//	cout << "Location: " << t.location << endl << "Customer name: " << t.customerName << endl;
+//	cout << "Price: " << t.price<<endl;
+//	return cout;
+//}
+
+
 
 
 
