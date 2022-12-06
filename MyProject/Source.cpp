@@ -71,4 +71,11 @@ void main() {
 	Location l2 = l1; //copy constr
 	cout << l2;
 	
+	//<= op
+	if (l2 <= 6)
+		cout << endl << "The number of rows is less than 6";
+
+	//- op
+	l2 - 1;
+	cout << l2;
 }
